@@ -21,7 +21,7 @@ public class Goods implements Serializable {
     private String ginfo;
     private String gimage;
     private int status;
-    private Date createtime;
+    private Date createtime = new Date();
     private int tid;
 
 

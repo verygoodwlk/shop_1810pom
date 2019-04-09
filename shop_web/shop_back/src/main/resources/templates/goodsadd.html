@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="|${#request.getContextPath()}/|"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+    <!-- Reset Stylesheet -->
+    <link rel="stylesheet" href="resources/css/reset.css" type="text/css"
+          media="screen" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css"
+          media="screen" />
+    <link rel="stylesheet" href="resources/css/invalid.css" type="text/css"
+          media="screen" />
+
+    <!--                       Javascripts                       -->
+    <!-- jQuery -->
+    <script type="text/javascript"
+            src="resources/scripts/jquery-1.8.3.min.js"></script>
+    <!-- jQuery Configuration -->
+  <!--  <script type="text/javascript"
+            src="resources/scripts/simpla.jquery.configuration.js"></script>-->
+
+    <!-- 引入上传控件 webuploader -->
+    <link rel="stylesheet" href="resources/widget/webuploader/webuploader.css" type="text/css"
+          media="screen" />
+    <script type="text/javascript" src="resources/widget/webuploader/webuploader.min.js"></script>
+
+    <script>
+        var uploader;
+        $(function(){
+
+            //初始化webuploader插件
+            uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: false,
+                // swf文件路径
+                swf: 'resources/widget/webuploader/Uploader.swf',
+                // 文件接收服务端。
+                server: '/imgs/uploader',
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#filePicker',
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                }
+            });
+
+            //给webuploader绑定事件
+            uploader.on("fileQueued", function(file){
+
+                //生成图片的缩略图
+                uploader.makeThumb(file, function(error, ret){
+                    if(error){
+                        alert(file.name + "缩略图生成失败！");
+                    } else {
+                        //将缩略图放入div容器中
+                        var img = "<img src=\"" + ret + "\" style=\"height: 100px; width: 100px; margin-right: 5px;\"/>";
+                        $("#imgs_div").append(img);
+                    }
+
+                }, 100, 100);
+            });
+        });
+
+        /**
+         * 上传图片
+         */
+        function upload_imgs(){
+            if(uploader){
+                uploader.upload();
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div id="main-content">
+    <div class="content-box">
+        <div class="content-box-content">
+            <div class="tab-content default-tab" id="tab2">
+                <form action="/goods/insert" method="post">
+                    <fieldset>
+                        <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+                        <p>
+                            <label>商品名称</label> <input
+                                class="text-input small-input" type="text"
+                                name="gname" />
+                        </p>
+                        <p>
+                            <label>商品图片</label>
+                            <!--dom结构部分-->
+                            <div id="uploader-demo">
+                                <!-- 存放上传图片的预览图 -->
+                                <div id="imgs_div" style="border: solid 1px black; width: 500px; height: 150px; margin-bottom: 10px; padding: 20px;">
+                                   <!-- <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>-->
+                                </div>
+
+                                <button type="button" class="mybutton" style="margin-bottom: 10px;" onclick="upload_imgs();">上传图片</button>
+                                <div id="filePicker">选择图片</div>
+                            </div>
+                        </p>
+                        <p>
+                            <label>商品价格</label> <input
+                                class="text-input small-input" type="text"
+                                name="gprice" />
+                        </p>
+                        <p>
+                            <label>商品库存</label> <input
+                                class="text-input small-input" type="text"
+                                name="gsave" />
+                        </p>
+                        <p>
+                            <label>商品的描述</label>
+                            <textarea class="text-input textarea wysiwyg"
+                                      name="ginfo" cols="79" rows="15"></textarea>
+                        </p>
+                        <p>
+                            <input class="mybutton" type="submit" value="提交" />
+                        </p>
+                    </fieldset>
+                    <div class="clear"></div>
+                    <!-- End .clear -->
+                </form>
+            </div>
+            <!-- End #tab2 -->
+        </div>
+        <!-- End .content-box-content -->
+    </div>
+</div>
+<!-- End #main-content -->
+</body>
+</html>
