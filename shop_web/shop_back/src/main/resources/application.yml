@@ -1,6 +1,11 @@
 spring:
   thymeleaf:
     cache: false
+
+server:
+  ip: 192.168.227.130
+
+
 dubbo:
   application:
     name: back_web
@@ -8,3 +13,12 @@ dubbo:
     address: zookeeper://192.168.227.130:2181
   consumer:
     check: false
+
+fdfs:
+  pool:
+    jmx-enabled: false
+  thumb-image:
+    width: 100
+    height: 100
+  tracker-list:
+    - 192.168.227.130:22122

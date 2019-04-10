@@ -44,7 +44,7 @@
                         <tr th:each="good : ${goods}">
                             <td><input type="checkbox" /></td>
                             <td th:text="${good.gname}">Lorem ipsum dolor</td>
-                            <td th:text="${good.gimage}"><a href="#" title="title">Sit amet</a></td>
+                            <td><img style="width: 160px; height: 120px;" th:src="|http://${serverip}/${#strings.setSplit(good.gimage, '|')[0]}|"/></td>
                             <td th:text="${good.ginfo}">Consectetur adipiscing</td>
                             <td th:text="${#numbers.formatCurrency(good.gprice)}">Donec tortor diam</td>
                             <td>

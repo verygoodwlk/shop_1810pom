@@ -65,6 +65,17 @@
 
                 }, 100, 100);
             });
+
+
+            //给webuploader绑定上传成功的事件
+            uploader.on("uploadSuccess", function(file, response){
+                var val = $("#image_paths").val();
+                if(val.length > 0){
+                    val += "|";
+                }
+                val += response.uploadPath;
+                $("#image_paths").val(val);
+            });
         });
 
         /**
@@ -105,6 +116,7 @@
 
                                 <button type="button" class="mybutton" style="margin-bottom: 10px;" onclick="upload_imgs();">上传图片</button>
                                 <div id="filePicker">选择图片</div>
+                                <input id="image_paths" type="hidden" name="gimage" value=""/>
                             </div>
                         </p>
                         <p>
