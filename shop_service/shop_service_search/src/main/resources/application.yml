@@ -1,0 +1,17 @@
+#服务端口
+#dubbo发布服务
+#solr
+server:
+  port: 9091
+dubbo:
+  application:
+    name: search_service
+  registry:
+    address: zookeeper://192.168.227.130:2181
+  protocol:
+    name: dubbo
+    port: 20881
+spring:
+  data:
+    solr:
+      host: http://192.168.227.130:8080/solr
