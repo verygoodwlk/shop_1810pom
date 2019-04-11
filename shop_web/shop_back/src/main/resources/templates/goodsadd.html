@@ -7,29 +7,29 @@
     <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
     <!-- Reset Stylesheet -->
     <link rel="stylesheet" href="resources/css/reset.css" type="text/css"
-          media="screen" />
+          media="screen"/>
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="resources/css/style.css" type="text/css"
-          media="screen" />
+          media="screen"/>
     <link rel="stylesheet" href="resources/css/invalid.css" type="text/css"
-          media="screen" />
+          media="screen"/>
 
     <!--                       Javascripts                       -->
     <!-- jQuery -->
     <script type="text/javascript"
             src="resources/scripts/jquery-1.8.3.min.js"></script>
     <!-- jQuery Configuration -->
-  <!--  <script type="text/javascript"
-            src="resources/scripts/simpla.jquery.configuration.js"></script>-->
+    <!--  <script type="text/javascript"
+              src="resources/scripts/simpla.jquery.configuration.js"></script>-->
 
     <!-- 引入上传控件 webuploader -->
     <link rel="stylesheet" href="resources/widget/webuploader/webuploader.css" type="text/css"
-          media="screen" />
+          media="screen"/>
     <script type="text/javascript" src="resources/widget/webuploader/webuploader.min.js"></script>
 
     <script>
         var uploader;
-        $(function(){
+        $(function () {
 
             //初始化webuploader插件
             uploader = WebUploader.create({
@@ -51,11 +51,11 @@
             });
 
             //给webuploader绑定事件
-            uploader.on("fileQueued", function(file){
+            uploader.on("fileQueued", function (file) {
 
                 //生成图片的缩略图
-                uploader.makeThumb(file, function(error, ret){
-                    if(error){
+                uploader.makeThumb(file, function (error, ret) {
+                    if (error) {
                         alert(file.name + "缩略图生成失败！");
                     } else {
                         //将缩略图放入div容器中
@@ -68,9 +68,9 @@
 
 
             //给webuploader绑定上传成功的事件
-            uploader.on("uploadSuccess", function(file, response){
+            uploader.on("uploadSuccess", function (file, response) {
                 var val = $("#image_paths").val();
-                if(val.length > 0){
+                if (val.length > 0) {
                     val += "|";
                 }
                 val += response.uploadPath;
@@ -81,8 +81,8 @@
         /**
          * 上传图片
          */
-        function upload_imgs(){
-            if(uploader){
+        function upload_imgs() {
+            if (uploader) {
                 uploader.upload();
             }
         }
@@ -100,34 +100,37 @@
                         <p>
                             <label>商品名称</label> <input
                                 class="text-input small-input" type="text"
-                                name="gname" />
+                                name="gname"/>
                         </p>
                         <p>
                             <label>商品图片</label>
                             <!--dom结构部分-->
-                            <div id="uploader-demo">
-                                <!-- 存放上传图片的预览图 -->
-                                <div id="imgs_div" style="border: solid 1px black; width: 500px; height: 150px; margin-bottom: 10px; padding: 20px;">
-                                   <!-- <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
-                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
-                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
-                                    <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>-->
-                                </div>
-
-                                <button type="button" class="mybutton" style="margin-bottom: 10px;" onclick="upload_imgs();">上传图片</button>
-                                <div id="filePicker">选择图片</div>
-                                <input id="image_paths" type="hidden" name="gimage" value=""/>
+                        <div id="uploader-demo">
+                            <!-- 存放上传图片的预览图 -->
+                            <div id="imgs_div"
+                                 style="border: solid 1px black; width: 500px; height: 150px; margin-bottom: 10px; padding: 20px;">
+                                <!-- <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                 <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                 <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>
+                                 <img src="xxx" style="height: 100px; width: 100px; margin-right: 5px;"/>-->
                             </div>
+
+                            <button type="button" class="mybutton" style="margin-bottom: 10px;"
+                                    onclick="upload_imgs();">上传图片
+                            </button>
+                            <div id="filePicker">选择图片</div>
+                            <input id="image_paths" type="hidden" name="gimage" value=""/>
+                        </div>
                         </p>
                         <p>
                             <label>商品价格</label> <input
                                 class="text-input small-input" type="text"
-                                name="gprice" />
+                                name="gprice"/>
                         </p>
                         <p>
                             <label>商品库存</label> <input
                                 class="text-input small-input" type="text"
-                                name="gsave" />
+                                name="gsave"/>
                         </p>
                         <p>
                             <label>商品的描述</label>
@@ -135,7 +138,7 @@
                                       name="ginfo" cols="79" rows="15"></textarea>
                         </p>
                         <p>
-                            <input class="mybutton" type="submit" value="提交" />
+                            <input class="mybutton" type="submit" value="提交"/>
                         </p>
                     </fieldset>
                     <div class="clear"></div>

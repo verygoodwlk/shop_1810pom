@@ -22,17 +22,16 @@ public class ImgController {
 
     /**
      * 图片上传
-     *
+     * <p>
      * 后缀：就是告诉操作系统这是一个什么类型的文件？
-     *
+     * <p>
      * 三国演义.mp4
-     *
      *
      * @return
      */
     @RequestMapping("/uploader")
     @ResponseBody
-    public String uploaderImg(MultipartFile file)  {
+    public String uploaderImg(MultipartFile file) {
 
         //获得最有一个.的下标 xxxxxxx.jpg
         int index = file.getOriginalFilename().lastIndexOf(".");

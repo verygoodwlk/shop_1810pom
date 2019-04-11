@@ -7,12 +7,12 @@
     <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
     <!-- Reset Stylesheet -->
     <link rel="stylesheet" href="resources/css/reset.css" type="text/css"
-          media="screen" />
+          media="screen"/>
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="resources/css/style.css" type="text/css"
-          media="screen" />
+          media="screen"/>
     <link rel="stylesheet" href="resources/css/invalid.css" type="text/css"
-          media="screen" />
+          media="screen"/>
 
     <!--                       Javascripts                       -->
     <!-- jQuery -->
@@ -31,7 +31,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th><input class="check-all" type="checkbox" /></th>
+                        <th><input class="check-all" type="checkbox"/></th>
                         <th>商品名称</th>
                         <th>商品图片</th>
                         <th>商品描述</th>
@@ -41,45 +41,46 @@
                     </thead>
 
                     <tbody>
-                        <tr th:each="good : ${goods}">
-                            <td><input type="checkbox" /></td>
-                            <td th:text="${good.gname}">Lorem ipsum dolor</td>
-                            <td><img style="width: 160px; height: 120px;" th:src="|http://${serverip}/${#strings.setSplit(good.gimage, '|')[0]}|"/></td>
-                            <td th:text="${good.ginfo}">Consectetur adipiscing</td>
-                            <td th:text="${#numbers.formatCurrency(good.gprice)}">Donec tortor diam</td>
-                            <td>
-                                <!-- Icons --> <a href="#" title="Edit"><img
-                                    src="resources/images/icons/pencil.png" alt="Edit" /></a> <a
-                                    href="#" title="Delete"><img
-                                    src="resources/images/icons/cross.png" alt="Delete" /></a> <a
-                                    href="#" title="Edit Meta"><img
-                                    src="resources/images/icons/hammer_screwdriver.png"
-                                    alt="Edit Meta" /></a>
-                            </td>
-                        </tr>
+                    <tr th:each="good : ${goods}">
+                        <td><input type="checkbox"/></td>
+                        <td th:text="${good.gname}">Lorem ipsum dolor</td>
+                        <td><img style="width: 160px; height: 120px;"
+                                 th:src="|http://${serverip}/${#strings.setSplit(good.gimage, '|')[0]}|"/></td>
+                        <td th:text="${good.ginfo}">Consectetur adipiscing</td>
+                        <td th:text="${#numbers.formatCurrency(good.gprice)}">Donec tortor diam</td>
+                        <td>
+                            <!-- Icons --> <a href="#" title="Edit"><img
+                                src="resources/images/icons/pencil.png" alt="Edit"/></a> <a
+                                href="#" title="Delete"><img
+                                src="resources/images/icons/cross.png" alt="Delete"/></a> <a
+                                href="#" title="Edit Meta"><img
+                                src="resources/images/icons/hammer_screwdriver.png"
+                                alt="Edit Meta"/></a>
+                        </td>
+                    </tr>
                     </tbody>
 
                     <tfoot>
                     <tr>
                         <td colspan="6">
                             <div class="bulk-actions align-left">
-                               <!-- <select name="dropdown">
-                                    <option value="option1">Choose an action...</option>
-                                    <option value="option2">Edit</option>
-                                    <option value="option3">Delete</option>
-                                </select> -->
+                                <!-- <select name="dropdown">
+                                     <option value="option1">Choose an action...</option>
+                                     <option value="option2">Edit</option>
+                                     <option value="option3">Delete</option>
+                                 </select> -->
                                 <a class="mybutton" href="/topage/goodsadd">添加商品</a>
                             </div>
-                           <!-- <div class="pagination">
-                                <a href="#" title="First Page">&laquo; First</a>
-                                <a href="#"
-                                                                                   title="Previous Page">&laquo; Previous</a> <a href="#"
-                                                                                                                                 class="number" title="1">1</a> <a href="#" class="number"
-                                                                                                                                                                   title="2">2</a> <a href="#" class="number current" title="3">3</a>
-                                <a href="#" class="number" title="4">4</a> <a href="#"
-                                                                              title="Next Page">Next &raquo;</a><a href="#"
-                                                                                                                   title="Last Page">Last &raquo;</a>
-                            </div>--> <!-- End .pagination -->
+                            <!-- <div class="pagination">
+                                 <a href="#" title="First Page">&laquo; First</a>
+                                 <a href="#"
+                                                                                    title="Previous Page">&laquo; Previous</a> <a href="#"
+                                                                                                                                  class="number" title="1">1</a> <a href="#" class="number"
+                                                                                                                                                                    title="2">2</a> <a href="#" class="number current" title="3">3</a>
+                                 <a href="#" class="number" title="4">4</a> <a href="#"
+                                                                               title="Next Page">Next &raquo;</a><a href="#"
+                                                                                                                    title="Last Page">Last &raquo;</a>
+                             </div>--> <!-- End .pagination -->
                             <div class="clear"></div>
                         </td>
                     </tr>

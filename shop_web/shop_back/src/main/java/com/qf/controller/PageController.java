@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @RequestMapping("/{topage}")
-    public String topage(@PathVariable("topage") String topage){
+    public String topage(@PathVariable("topage") String topage) {
         return topage;
     }
 }
