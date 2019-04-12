@@ -35,4 +35,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
         return result;
     }
+
+    @Override
+    public Goods queryById(int gid) {
+        return goodsMapper.selectById(gid);
+    }
 }
