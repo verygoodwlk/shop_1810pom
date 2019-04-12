@@ -15,3 +15,8 @@ spring:
   data:
     solr:
       host: http://192.168.227.130:8080/solr
+  rabbitmq:
+    host: 192.168.227.130
+    username: admin
+    password: admin
+    virtual-host: /admin

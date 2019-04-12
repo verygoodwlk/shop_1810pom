@@ -6,6 +6,8 @@ import com.qf.dao.GoodsMapper;
 import com.qf.entity.Goods;
 import com.qf.service.IGoodsService;
 import com.qf.service.ISearchService;
+import com.qf.shop_service_goods.RabbitMQConfiguration;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class GoodsServiceImpl implements IGoodsService {
     @Reference
     private ISearchService searchService;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Override
     public List<Goods> queryAll() {
         return goodsMapper.selectList(null);
@@ -31,7 +36,10 @@ public class GoodsServiceImpl implements IGoodsService {
         int result = goodsMapper.insert(goods);
 
         //通过dubbo调用搜索服务，同步索引库
-        searchService.insertGoods(goods);
+//        searchService.insertGoods(goods);
+
+        //将添加商品的信息，放入rabbitmq中
+        rabbitTemplate.convertAndSend(RabbitMQConfiguration.FANOUT_NAME, "", goods);
 
         return result;
     }

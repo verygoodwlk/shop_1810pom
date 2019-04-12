@@ -7,3 +7,9 @@ dubbo:
     address: zookeeper://192.168.227.130:2181
   consumer:
     check: false
+spring:
+  rabbitmq:
+    host: 192.168.227.130
+    username: admin
+    password: admin
+    virtual-host: /admin

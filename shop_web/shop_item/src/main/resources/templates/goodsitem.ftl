@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="${context}/"/>
+    <#--<base href="${context}/"/>-->
+    <base href="/"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>商品详细页面</title>
     <link rel="stylesheet" href="css/base.css" type="text/css" />
