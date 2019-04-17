@@ -1,0 +1,16 @@
+server:
+  port: 9092
+dubbo:
+  application:
+    name: user_service
+  registry:
+    address: zookeeper://192.168.227.130:2181
+  protocol:
+    name: dubbo
+    port: 20882
+spring:
+  datasource:
+    url: jdbc:mysql:///shop1810
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver

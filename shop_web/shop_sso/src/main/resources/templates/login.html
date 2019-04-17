@@ -75,6 +75,11 @@
         </div>
         <div class="form-bd">
             <form action="/sso/login" method="POST">
+
+                <!-- 判断是否成功 -->
+                <dl th:if="${error == '0'}">用户名或者密码错误！</dl>
+                <dl th:if="${error == '1'}">账号未激活 <a th:href="${tomail}">去激活</a></dl>
+
                 <input type="hidden" name="returnUrl" th:value="${returnUrl}"/>
                 <dl>
                     <dt>用户名</dt>

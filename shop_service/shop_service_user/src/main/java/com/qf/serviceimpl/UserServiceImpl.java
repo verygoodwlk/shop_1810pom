@@ -35,6 +35,14 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int jihuoUser(String username) {
-        return 0;
+
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("username", username);
+        User user = userMapper.selectOne(queryWrapper);
+        user.setStatus(1);
+
+        //修改用户信息
+        userMapper.updateById(user);
+        return 1;
     }
 }
