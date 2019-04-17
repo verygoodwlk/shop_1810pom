@@ -11,6 +11,9 @@ dubbo:
   protocol:
     name: dubbo
     port: 20881
+  provider:
+    timeout: 10000
+    retries: 5
 spring:
   data:
     solr:

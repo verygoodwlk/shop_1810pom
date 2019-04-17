@@ -9,3 +9,6 @@ dubbo:
     name: search_web
   registry:
     address: zookeeper://192.168.227.130:2181
+  consumer:
+    check: false
+

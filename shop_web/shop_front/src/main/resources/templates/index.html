@@ -11,6 +11,9 @@
     <script type="text/javascript" src="js/topNav.js" ></script>
     <script type="text/javascript" src="js/focus.js" ></script>
     <script type="text/javascript" src="js/shop_home_tab.js" ></script>
+
+    <script type="text/javascript" src="http://localhost:8084/js/islogin.js" ></script>
+
 </head>
 <body>
 <!-- Header  -wll-2013/03/24 -->
@@ -20,7 +23,8 @@
         <div class="shop_hd_topNav_all">
             <!-- Header TopNav Left -->
             <div class="shop_hd_topNav_all_left">
-                <p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a >登录</a>][<a >注册</a>]</p>
+                <p id="pid">
+                </p>
             </div>
             <!-- Header TopNav Left End -->
 
@@ -104,7 +108,7 @@
             </ul>
             <div class="clear"></div>
             <div class="search_form">
-                <form method="post" action="http://localhost:8082/search/searchByKeyWord">
+                <form method="get" action="http://localhost:8082/search/searchByKeyWord">
                     <div class="search_formstyle">
                         <input type="text" class="search_form_text" name="keyword" placeholder="搜索其实很简单！" />
                         <input type="submit" class="search_form_sub" title="搜索" />
