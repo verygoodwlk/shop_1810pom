@@ -40,6 +40,9 @@ spring:
     username: admin
     password: admin
     virtual-host: /admin
+  redis:
+    host: 192.168.227.130
+    password: root
 
 dubbo:
   application:

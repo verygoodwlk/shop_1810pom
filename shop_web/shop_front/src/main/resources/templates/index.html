@@ -14,6 +14,43 @@
 
     <script type="text/javascript" src="http://localhost:8084/js/islogin.js" ></script>
 
+
+    <script>
+        $(function(){
+            $.ajax({
+                url: "http://localhost:8085/cart/list",
+                success:function(data){
+                    //遍历购物车
+                    if(data){
+                        //设置购物车的商品数量
+                        $("#cart_number_id").html(data.length);
+                        //设置购物车的列表
+                        var html = "<ul style='width: 100%;'>";
+                        for(var i = 0; i < data.length; i++){
+                            //获得购物车的商品信息
+                            var cart = data[i];
+                            html += "<li style='margin-bottom: 15px; width: 200px'>";
+
+                            //处理图片路径
+                            var url = cart.goods.gimage.split("|")[0];
+                            html += "<img style='width: 50px; height: 30px' src='http://192.168.227.130/" + url + "'/>";
+                            html += cart.goods.gname;
+                            // html += cart.goods.gprice;
+                            // html += "小计：" + cart.allprice;
+                            html += "</li>";
+                        }
+                        html += "</ul>";
+                        $("#cart_id").html(html);
+                    }
+                },
+                dataType: "jsonp",
+                jsonpCallback: "showcarts"
+            });
+        });
+
+
+    </script>
+
 </head>
 <body>
 <!-- Header  -wll-2013/03/24 -->
@@ -58,15 +95,15 @@
 
                     <li>
                         <div class="topNav_menu">
-                            <a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
-                            <div class="topNav_menu_bd" style="display:none;">
+                            <a href="http://localhost:8085/cart/cartlist" class="topNavHover">购物车<b id="cart_number_id">0</b>种商品<i></i></a>
+                            <div class="topNav_menu_bd" style="display:none; width: 200px; height: 200px" id="cart_id">
                                 <!--
                                 <ul>
                                   <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
                                   <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
                                 </ul>
                                 -->
-                                <p>还没有商品，赶快去挑选！</p>
+                                <p >还没有商品，赶快去挑选！</p>
                             </div>
                         </div>
                     </li>

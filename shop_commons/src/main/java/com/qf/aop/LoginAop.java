@@ -14,7 +14,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.net.URLEncoder;
-import java.util.Arrays;
 
 @Aspect
 public class LoginAop {
@@ -47,7 +46,7 @@ public class LoginAop {
                 }
             }
 
-            System.out.println("获得cookie中的凭证：" + loginToken);
+//            System.out.println("获得cookie中的凭证：" + loginToken);
 
             //  3)判断凭证是否为空
             User user = null;
@@ -58,7 +57,7 @@ public class LoginAop {
                 user = (User) redisTemplate.opsForValue().get(loginToken);
             }
 
-            System.out.println("获得redis中的用户信息：" + user);
+//            System.out.println("获得redis中的用户信息：" + user);
 
             //3、判断是否登录
             if(user == null){
@@ -98,11 +97,11 @@ public class LoginAop {
                 }
             }
 
-            System.out.println("获得当前的新的参数列表：" + Arrays.toString(params));
+//            System.out.println("获得当前的新的参数列表：" + Arrays.toString(params));
 
             //执行目标方法
             Object result = joinPoint.proceed(params);// -- addCart方法
-            System.out.println("在目标方法之后执行....");
+//            System.out.println("在目标方法之后执行....");
 
             return result;
         } catch (Throwable throwable) {

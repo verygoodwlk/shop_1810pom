@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.qf.entity.Email;
 import com.qf.entity.User;
+import com.qf.service.ICartService;
 import com.qf.service.IUserService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class SSOController {
 
     @Reference
     private IUserService userService;
+
+    @Reference
+    private ICartService cartService;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -58,7 +62,14 @@ public class SSOController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(String username, String password, Model model, HttpServletResponse response, String returnUrl){
+    public String login(
+            @CookieValue(name = "cart_token", required = false)
+            String cartToken,
+            String username,
+            String password,
+            Model model,
+            HttpServletResponse response,
+            String returnUrl){
 
         User user = userService.loginUser(username, password);
         if(user == null){
@@ -100,6 +111,9 @@ public class SSOController {
 //        cookie.setSecure(true);
         //设置cookie的有效路径
         cookie.setPath("/");
+
+        //调用购物车合并的服务（临时购物车 - 永久购物车）
+        cartService.mergeCarts(cartToken, user);
 
 
         response.addCookie(cookie);
