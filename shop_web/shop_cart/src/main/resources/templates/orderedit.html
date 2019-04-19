@@ -667,7 +667,10 @@
                     url: "/order/insertOrders",
                     data: {"aid":aid},
                     success: function(data){
-                        alert("下单成功！");
+                        if(data){
+                            //去支付
+                            location.href = "/pay/alipay?orderid=" + data;
+                        }
                     }
                 });
             }

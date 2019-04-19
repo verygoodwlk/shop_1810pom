@@ -33,7 +33,7 @@ public class OrdersServiceImpl implements IOrderService {
 
     @Override
     @Transactional
-    public int insertOrders(int aid, User user) {
+    public String insertOrders(int aid, User user) {
 
         //根据收货地址id查询收货地址的详细信息
         Address address = addressService.queryById(aid);
@@ -84,7 +84,7 @@ public class OrdersServiceImpl implements IOrderService {
         //清空购物车信息
         cartService.deleteCartsByUid(user.getId());
 
-        return 1;
+        return orders.getOrderid();
     }
 
     @Override
@@ -106,5 +106,10 @@ public class OrdersServiceImpl implements IOrderService {
 //        queryWrapper.eq("uid", uid);
 //        List<Orders> ordersList = ordersMapper.selectList(queryWrapper);
         return ordersMapper.queryOrdersByUid(uid);
+    }
+
+    @Override
+    public int updateOrders(Orders order) {
+        return ordersMapper.updateById(order);
     }
 }

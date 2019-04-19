@@ -67,9 +67,9 @@ public class OrderController {
     @IsLogin
     @RequestMapping("/insertOrders")
     @ResponseBody
-    public boolean insertOrders(int aid, User user){
-        orderService.insertOrders(aid, user);
-        return true;
+    public String insertOrders(int aid, User user){
+        String orderid = orderService.insertOrders(aid, user);
+        return orderid;
     }
 
     /**

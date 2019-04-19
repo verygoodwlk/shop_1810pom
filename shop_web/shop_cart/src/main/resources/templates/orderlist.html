@@ -555,7 +555,7 @@
                             <!-- 后面两列需要跨行 -->
                             <td th:rowspan="${#arrays.length(order.orderDetils)}" th:if="${orderdetilState.first}" class="dingdan_zongjia">￥<strong th:text="${order.allprice}">25.00</strong><br />(免运费)</td>
                             <td th:switch="${order.status}" th:rowspan="${#arrays.length(order.orderDetils)}" th:if="${orderdetilState.first}" class="digndan_caozuo">
-                                <a th:case="0">待付款</a>
+                                <a th:case="0">待付款 <br/> <a th:href="|/pay/alipay?orderid=${order.orderid}|">去付款</a></a>
                                 <a th:case="1">待发货</a>
                                 <a th:case="2">已发货</a>
                                 <a th:case="3">已签收</a>
@@ -564,6 +564,14 @@
                         </tbody>
                     </table>
                 </td></tr>
+
+                <script>
+                    // function gopay(orderid){
+                    //     alert(orderid);
+                    //     location.href = "/pay/alipay?orderid=" + orderid;
+                    // }
+                </script>
+
 
                 </tbody>
             </table>
