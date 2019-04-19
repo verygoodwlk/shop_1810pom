@@ -15,4 +15,7 @@ public interface ICartService {
 
     //合并购物车
     int mergeCarts(String cartToken, User user);
+
+    //清空购物车
+    int deleteCartsByUid(int uid);
 }

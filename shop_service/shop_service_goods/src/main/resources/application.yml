@@ -54,4 +54,5 @@ dubbo:
     port: 20880
   consumer:
     check: false
-
+mybatis-plus:
+  mapper-locations: classpath:com/qf/dao/mapper/*.xml

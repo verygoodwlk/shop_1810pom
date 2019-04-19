@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.dao.OrdersMapper" >
+
+    <resultMap id="ordersMapper" type="com.qf.entity.Orders">
+
+        <id column="id" property="id"></id>
+        <!-- 自动映射其他字段 -->
+        <result column="orderid" property="orderid"></result>
+        <result column="allprice" property="allprice"></result>
+        <result column="status" property="status"></result>
+        <result column="uid" property="uid"></result>
+
+        <collection property="orderDetils" ofType="com.qf.entity.OrderDetils">
+            <id column="odid" property="id"></id>
+            <result column="gid" property="gid"></result>
+            <result column="gimage" property="gimage"></result>
+            <result column="gname" property="gname"></result>
+            <result column="gprice" property="gprice"></result>
+            <result column="gnumber" property="gnumber"></result>
+            <result column="oid" property="oid"></result>
+        </collection>
+
+    </resultMap>
+
+    <!-- 查询订单列表 -->
+    <select id="queryOrdersByUid" resultMap="ordersMapper">
+        select *, od.id as odid from orders o join order_detils od on o.id = od.oid where uid = #{uid}
+    </select>
+</mapper>
